@@ -1,6 +1,7 @@
 ﻿using System;
 using TouristicWallet.models;
 using Xamarin.Forms;
+using TouristicWallet.utils;
 
 namespace TouristicWallet
 {
@@ -13,7 +14,7 @@ namespace TouristicWallet
 
         void OnButtonClicked(object sender, EventArgs args)
         {
-            Currency.GetAllCurrencies();
+            CurrencyScrapping.GetAllCurrencies();
         }
 
     }

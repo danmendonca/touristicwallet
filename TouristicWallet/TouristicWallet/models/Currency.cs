@@ -1,6 +1,8 @@
 ﻿using HtmlAgilityPack;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -9,53 +11,76 @@ using TouristicWallet.utils;
 
 namespace TouristicWallet.models
 {
-    class Currency
+    //CURRENCY DATABASE MODEL
+    [Table("Currency")]
+    class Currency : INotifyPropertyChanged
     {
-        public String name;
-        public String initials;
 
-        public Currency(String name, String initials)
+        private int _id;
+        [PrimaryKey, AutoIncrement]
+        public int Id
         {
-            this.name = name;
-            this.initials = initials;
-        }
-
-        public static void GetAllCurrencies()
-        {
-            WebService.CallWebAsync("http://www.xe.com/iso4217.php", SaveCurrencies);
-        }
-
-        private static void SaveCurrencies(String responseHtml)
-        {
-            //parse html 
-            String source = WebUtility.HtmlDecode(responseHtml);
-            HtmlDocument html = new HtmlDocument();
-            html.LoadHtml(source);
-
-            HtmlNode currencyTable = html.DocumentNode.Descendants().First(
-                x => (x.Id.Equals("currencyTable")));
-
-            HtmlNode tableBody = currencyTable.Descendants().First(
-                x => (x.Name.Equals("tbody")));
-
-            List<HtmlNode> tableRows = tableBody.Descendants().Where(
-                x => (x.Name.Equals("tr"))).ToList();
-
-            List<HtmlNode> tds;
-            foreach (HtmlNode tr in tableRows)
+            get
             {
-                tds = tr.Descendants().Where(x => (x.Name.Equals("td"))).ToList();
-                if (tds.Count() == 2)
-                {
-                    String name = tds.ElementAt(1).InnerText;
-                    String initials = tds.ElementAt(0).Descendants().First(x => (x.Name.Equals("a"))).InnerText;
-                    System.Diagnostics.Debug.WriteLine(initials+": "+name);
-                }
+                return _id;
             }
-
-            //save currencies in DB
-
+            set
+            {
+                this._id = value;
+                OnPropertyChanged(nameof(Id));
+            }
         }
 
+        private string _initials;
+        [NotNull, Unique, MaxLength(3)]
+        public string Initials
+        {
+            get
+            {
+                return _initials;
+            }
+            set
+            {
+                this._initials = value;
+                OnPropertyChanged(nameof(Initials));
+            }
+        }
+
+        private string _name;
+        [NotNull]
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                this._name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        private double _rateToEUR;
+
+        public double RateToEUR
+        {
+            get
+            {
+                return _rateToEUR;
+            }
+            set
+            {
+                this._rateToEUR = value;
+                OnPropertyChanged(nameof(RateToEUR));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            this.PropertyChanged?.Invoke(this,
+              new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
