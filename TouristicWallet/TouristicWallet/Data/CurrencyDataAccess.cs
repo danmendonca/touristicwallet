@@ -19,9 +19,12 @@ namespace TouristicWallet.Data
 
         public CurrencyDataAccess()
         {
-            database = DependencyService.Get<IDatabaseConnection>().DbConnection();
-            database.CreateTable<Currency>();
-            this.Currencies = new ObservableCollection<Currency>(database.Table<Currency>());
+            lock (collisionLock)
+            {
+                database = DependencyService.Get<IDatabaseConnection>().DbConnection();
+                database.CreateTable<Currency>();
+                this.Currencies = new ObservableCollection<Currency>(database.Table<Currency>());
+            }
         }
 
         public IEnumerable<Currency> GetCurrencies()
@@ -76,6 +79,32 @@ namespace TouristicWallet.Data
                     }
                 }
             }
+        }
+
+        public void DeleteAllCurrencies()
+        {
+            lock (collisionLock)
+            {
+                database.DropTable<Currency>();
+                database.CreateTable<Currency>();
+            }
+            this.Currencies = null;
+            this.Currencies = new ObservableCollection<Currency>
+              (database.Table<Currency>());
+        }
+
+        public int DeleteCurrency(Currency currency)
+        {
+            var id = currency.Id;
+            if (id != 0)
+            {
+                lock (collisionLock)
+                {
+                    database.Delete<Currency>(id);
+                }
+            }
+            this.Currencies.Remove(currency);
+            return id;
         }
     }
 }

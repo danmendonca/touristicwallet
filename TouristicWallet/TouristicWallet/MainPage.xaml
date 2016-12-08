@@ -9,11 +9,6 @@
       Text="Hello "
          VerticalOptions="Center"
          HorizontalOptions="Center" />
-
-    <Button Text="Test"
-            HorizontalOptions ="Center"
-            VerticalOptions ="CenterAndExpand"
-            Clicked="OnButtonClicked" />
   </StackLayout>
 
 </ContentPage>
