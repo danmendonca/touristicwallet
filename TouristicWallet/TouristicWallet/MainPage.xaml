@@ -4,8 +4,16 @@
              xmlns:local="clr-namespace:TouristicWallet"
              x:Class="TouristicWallet.MainPage">
 
-  <Label Text="Welcome to Xamarin Forms!"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
+  <StackLayout>
+    <Label x:Name ="labelStatus"
+      Text="Hello "
+         VerticalOptions="Center"
+         HorizontalOptions="Center" />
+
+    <Button Text="Test"
+            HorizontalOptions ="Center"
+            VerticalOptions ="CenterAndExpand"
+            Clicked="OnButtonClicked" />
+  </StackLayout>
 
 </ContentPage>

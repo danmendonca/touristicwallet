@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TouristicWallet.models;
 using Xamarin.Forms;
 
 namespace TouristicWallet
@@ -13,5 +10,11 @@ namespace TouristicWallet
         {
             InitializeComponent();
         }
+
+        void OnButtonClicked(object sender, EventArgs args)
+        {
+            Currency.GetAllCurrencies();
+        }
+
     }
 }
