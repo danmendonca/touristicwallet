@@ -41,6 +41,7 @@
     <Compile Include="Converters\CurrencyIdToCodeConverter.cs" />
     <Compile Include="Data\CurrencyDataAccess.cs" />
     <Compile Include="Data\IDatabaseConnection.cs" />
+    <Compile Include="Data\WalletDataAccess.cs" />
     <Compile Include="Models\Wallet.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WalletPageViewModel.cs" />

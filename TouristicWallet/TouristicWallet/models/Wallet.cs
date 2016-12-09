@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TouristicWallet.Data;
 
 namespace TouristicWallet.Models
 {
@@ -11,6 +12,18 @@ namespace TouristicWallet.Models
     public class Wallet
     {
         private Currency _currency;
+        public Currency Currency
+        {
+            get
+            {
+                if (_currency == null)
+                {
+                    CurrencyDataAccess cda = new CurrencyDataAccess();
+                    _currency = cda.GetCurrency(CurrencyId);
+                }
+                return _currency;
+            }
+        }
 
         private Int32 _currencyId;
 
@@ -34,6 +47,14 @@ namespace TouristicWallet.Models
         {
             throw new NotImplementedException();
         }
+
+        public Wallet(int currencyId)
+        {
+            CurrencyId = currencyId;
+            Amount = 0.0;
+        }
+
+        public Wallet() { }
 
     }
 }
