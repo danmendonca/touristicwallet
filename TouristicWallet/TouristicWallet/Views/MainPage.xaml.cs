@@ -1,5 +1,5 @@
 ﻿using System;
-using TouristicWallet.models;
+using TouristicWallet.Models;
 using Xamarin.Forms;
 using TouristicWallet.utils;
 using TouristicWallet.Data;

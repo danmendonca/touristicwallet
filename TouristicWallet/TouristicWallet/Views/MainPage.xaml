@@ -2,11 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TouristicWallet"
-             x:Class="TouristicWallet.MainPage">
+             xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
+             x:Class="TouristicWallet.MainPage"
+             >
+  <ContentPage.BindingContext>
+    <vm:WalletPageViewModel/>
+  </ContentPage.BindingContext>
 
   <StackLayout>
     <Label x:Name ="labelStatus"
-      Text="Hello "
+      Text="{Binding DefaultText}"
          VerticalOptions="Center"
          HorizontalOptions="Center" />
   </StackLayout>

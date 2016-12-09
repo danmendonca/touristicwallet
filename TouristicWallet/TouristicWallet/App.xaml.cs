@@ -13,7 +13,7 @@ namespace TouristicWallet
         {
             InitializeComponent();
 
-            MainPage = new TouristicWallet.MainPage();
+            MainPage = new TouristicWallet.Views.WalletPage();
         }
 
         protected override void OnStart()

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TouristicWallet.models;
+using TouristicWallet.Models;
 using Xamarin.Forms;
 
 namespace TouristicWallet.Data
@@ -43,6 +43,15 @@ namespace TouristicWallet.Data
             {
                 return database.Table<Currency>().
                   FirstOrDefault(currency => currency.Initials.Equals(initials));
+            }
+        }
+
+        public Currency GetCurrency(int id)
+        {
+            lock (collisionLock)
+            {
+                return database.Table<Currency>().
+                  FirstOrDefault(currency => currency.Id == id);
             }
         }
 
