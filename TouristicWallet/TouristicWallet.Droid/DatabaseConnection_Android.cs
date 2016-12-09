@@ -1,6 +1,8 @@
 using SQLite;
 using LocalDataAccess.Droid;
 using System.IO;
+using TouristicWallet;
+
 [assembly: Xamarin.Forms.Dependency(typeof(DatabaseConnection_Android))]
 namespace LocalDataAccess.Droid
 {

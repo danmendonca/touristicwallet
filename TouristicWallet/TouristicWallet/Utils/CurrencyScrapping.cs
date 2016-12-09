@@ -45,7 +45,7 @@ namespace TouristicWallet.utils
                 {
                     String name = tds.ElementAt(1).InnerText;
                     String initials = tds.ElementAt(0).Descendants().First(x => (x.Name.Equals("a"))).InnerText;
-                    System.Diagnostics.Debug.WriteLine(initials+": "+name);
+                    //System.Diagnostics.Debug.WriteLine(initials+": "+name);
                     currencyData.Currencies.Add(new models.Currency
                     {
                         Initials = initials,
