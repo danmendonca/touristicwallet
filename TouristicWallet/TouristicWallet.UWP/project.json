@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "HtmlAgilityPack": "1.4.9.5",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "sqlite-net-pcl": "1.1.2",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "sqlite-net-pcl": "1.2.1",
     "Xamarin.Forms": "2.3.3.175"
   },
   "frameworks": {
