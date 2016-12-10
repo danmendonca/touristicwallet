@@ -49,6 +49,12 @@ namespace TouristicWallet.ViewModels
         {
             ((WalletManagementPage)sender).ReturningEvent -= Wmp_ReturningEvent;
             WalletDataAccess wda = WalletDataAccess.Instance;
+            //Wallet = wda.GetOwned().ToList();
+        }
+
+        public void Update()
+        {
+            WalletDataAccess wda = WalletDataAccess.Instance;
             Wallet = wda.GetOwned().ToList();
         }
     }

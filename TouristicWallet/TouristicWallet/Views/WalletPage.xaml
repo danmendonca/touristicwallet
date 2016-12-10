@@ -7,7 +7,7 @@
              >
 
   <ContentPage.BindingContext>
-    <vm:WalletPageViewModel/>
+    <vm:WalletPageViewModel x:Name="ViewModel"/>
   </ContentPage.BindingContext>
 
   <ContentPage.Resources>

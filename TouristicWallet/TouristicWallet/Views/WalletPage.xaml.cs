@@ -29,5 +29,11 @@ namespace TouristicWallet.Views
             }
             return true;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.Update();
+        }
     }
 }
