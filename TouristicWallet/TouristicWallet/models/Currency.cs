@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TouristicWallet.utils;
 
-namespace TouristicWallet.models
+namespace TouristicWallet.Models
 {
     //CURRENCY DATABASE MODEL
     [Table("Currency")]
-    class Currency : INotifyPropertyChanged
+    public class Currency : INotifyPropertyChanged
     {
 
         private int _id;

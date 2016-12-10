@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using TouristicWallet.models;
 using Xamarin.Forms;
 using TouristicWallet.utils;
 using TouristicWallet.Data;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.Globalization;
+using TouristicWallet.Models;
 
 namespace TouristicWallet.View
 {

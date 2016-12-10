@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace TouristicWallet
+namespace TouristicWallet.Data
 {
     public interface IDatabaseConnection
     {

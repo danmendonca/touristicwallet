@@ -1,5 +1,5 @@
 ﻿using System;
-using TouristicWallet.models;
+using TouristicWallet.Models;
 using Xamarin.Forms;
 using TouristicWallet.utils;
 using TouristicWallet.Data;
@@ -12,8 +12,6 @@ namespace TouristicWallet
         public MainPage()
         {
             InitializeComponent();
-            CurrencyScrapping.PrepareCurrencies();
-            Navigation.PushAsync(new ConversionPage("EUR"));
         }
     }
 }

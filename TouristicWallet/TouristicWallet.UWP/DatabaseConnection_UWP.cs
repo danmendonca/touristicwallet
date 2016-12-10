@@ -8,7 +8,7 @@ using TouristicWallet;
 [assembly: Dependency(typeof(DatabaseConnection_UWP))]
 namespace LocalDataAccess.UWP
 {
-    public class DatabaseConnection_UWP : IDatabaseConnection
+    public class DatabaseConnection_UWP : TouristicWallet.Data.IDatabaseConnection
     {
         public SQLiteConnection DbConnection()
         {

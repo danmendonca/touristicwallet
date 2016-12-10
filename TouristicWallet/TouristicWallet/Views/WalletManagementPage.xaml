@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TouristicWallet.Views.WalletManagementPage"
+             xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
+             xmlns:converters="clr-namespace:TouristicWallet.Converters"
+             >
+
+  <ContentPage.BindingContext>
+    <vm:WalletManagementViewModel x:Name="ViewModel"/>
+  </ContentPage.BindingContext>
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:CurrencyIdToCodeConverter x:Key="idToCodeConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <StackLayout>
+    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding Currency.Initials, Mode=OneWay}" />
+              <Switch IsToggled="{Binding IsOwned, Mode=TwoWay}"
+                      />
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+  </StackLayout>
+</ContentPage>

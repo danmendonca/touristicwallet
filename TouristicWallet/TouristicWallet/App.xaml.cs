@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using TouristicWallet.utils;
 using Xamarin.Forms;
 
 namespace TouristicWallet
@@ -13,7 +13,10 @@ namespace TouristicWallet
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new TouristicWallet.MainPage());
+            CurrencyScrapping.PrepareCurrencies();
+
+            MainPage = new NavigationPage( new Views.WalletPage());
+            ViewModels.ViewModelBase.Navigation = MainPage.Navigation;
         }
 
         protected override void OnStart()
