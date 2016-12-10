@@ -10,6 +10,9 @@ using Xamarin.Forms;
 
 namespace TouristicWallet.Data
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class WalletDataAccess
     {
         private static SQLiteConnection _database;
@@ -23,7 +26,6 @@ namespace TouristicWallet.Data
                 if (_instance == null) _instance = new WalletDataAccess();
                 return _instance;
             }
-            private set { }
         }
 
         public ObservableCollection<Wallet> Wallet { get; set; }
@@ -38,50 +40,79 @@ namespace TouristicWallet.Data
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Wallet> GetOwned()
         {
-            return _database.Table<Wallet>().AsEnumerable();
+            return Wallet;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Boolean IsOwned(Int32 id)
         {
             return _database.Table<Wallet>().FirstOrDefault(w => w.CurrencyId == id) != null;
         }
 
-        public Boolean OwnCurrency(Int32 id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public void OwnCurrency(Int32 id)
         {
-            if (!IsOwned(id))
+            new Wallet(id);
+            lock (_collisionLock)
             {
-                lock (_collisionLock)
-                {
-                    return _database.Insert(new Wallet(id)) == 1;
-                }
+                if(_database.Table<Wallet>().FirstOrDefault(w => w.CurrencyId == id) == null)
+                    _database.Insert(new Wallet(id));
             }
-
-            return false;
+            UpdateWallet();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Boolean RemoveOwnedCurrency(Int32 id)
         {
-            if(IsOwned(id))
+            lock (_collisionLock)
             {
-                lock(_collisionLock)
-                {
-                    return _database.Table<Wallet>().Delete(w => w.CurrencyId == id) == 1;
-                }
+                if (_database.Table<Wallet>().Delete(w => w.CurrencyId == id) != 1) return false;
+
+                UpdateWallet();
+                return true;
             }
-            return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
         public Wallet Update(Wallet w)
         {
 
-            lock(_collisionLock)
+            lock (_collisionLock)
             {
                 _database.Update(w);
+                UpdateWallet();
             }
 
             return w;
+        }
+
+
+        public ObservableCollection<Wallet> UpdateWallet()
+        {
+            Wallet = new ObservableCollection<Models.Wallet>();
+            return Wallet;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace TouristicWallet.ViewModels
 {
@@ -15,6 +16,9 @@ namespace TouristicWallet.ViewModels
     /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
+
+        public static INavigation Navigation { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

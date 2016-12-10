@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TouristicWallet.Models;
 using TouristicWallet.Data;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace TouristicWallet.ViewModels
 {
@@ -25,6 +27,8 @@ namespace TouristicWallet.ViewModels
             get { return _defaultText; }
             set { _defaultText = value; }
         }
+
+        public ICommand GoToManagement { get; set; }
 
 
         public WalletPageViewModel()
@@ -51,6 +55,8 @@ namespace TouristicWallet.ViewModels
             /* end dummy content */
 
             OnPropertyChanged(nameof(Wallet));
+
+            this.GoToManagement = new Command ( async () => await Navigation.PushAsync(new Views.WalletManagementPage()) );
         }
 
     }

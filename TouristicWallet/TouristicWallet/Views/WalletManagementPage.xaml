@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TouristicWallet.Views.WalletPage"
-             xmlns:vm="clr-namespace:TouristicWallet.ViewModels;"
+             x:Class="TouristicWallet.Views.WalletManagementPage"
+             xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
              xmlns:converters="clr-namespace:TouristicWallet.Converters"
              >
 
   <ContentPage.BindingContext>
-    <vm:WalletPageViewModel/>
+    <vm:WalletManagementViewModel x:Name="ViewModel"/>
   </ContentPage.BindingContext>
 
   <ContentPage.Resources>
@@ -17,21 +17,19 @@
   </ContentPage.Resources>
 
   <StackLayout>
-    <Button Text="Edit Owned"
-            Command="{Binding GoToManagement}"/>
-
-    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Wallet, Mode=OneWay}">
+    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout>
-              <Label Text="{Binding CurrencyId, Converter={StaticResource idToCodeConverter}}"/>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding Currency.Initials, Mode=OneWay}" />
+              <Switch IsToggled="{Binding IsOwned, Mode=TwoWay}"
+                      />
             </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-  </StackLayout>
 
-  <!--<Label Text="{Binding DefaultText}" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+  </StackLayout>
 </ContentPage>
