@@ -2,7 +2,11 @@
   "dependencies": {
     "HtmlAgilityPack": "1.4.9.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "SkiaSharp": "1.55.1",
+    "SkiaSharp.Views.Forms": "1.55.1",
     "sqlite-net-pcl": "1.2.1",
+    "SQLitePCL.bundle_green": "0.9.3",
+    "SQLitePCL.raw": "0.9.3",
     "Xamarin.Forms": "2.3.3.175"
   },
   "frameworks": {

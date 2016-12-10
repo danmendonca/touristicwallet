@@ -41,8 +41,9 @@ namespace TouristicWallet.Data
         {
             lock (collisionLock)
             {
-                return database.Table<Currency>().
+                Currency cur = database.Table<Currency>().
                   FirstOrDefault(currency => currency.Initials.Equals(initials));
+                return cur;
             }
         }
 
