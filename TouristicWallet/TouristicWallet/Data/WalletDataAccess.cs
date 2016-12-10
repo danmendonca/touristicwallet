@@ -114,5 +114,33 @@ namespace TouristicWallet.Data
             Wallet = _database.Table<Wallet>().ToList();
             return Wallet;
         }
+
+        public IEnumerable<Wallet> GetWalletWithMoney()
+        {
+            lock (_collisionLock)
+            {
+                var query = from wall in _database.Table<Wallet>()
+                            where wall.Amount > 0
+                            select wall;
+                return query.AsEnumerable();
+            }
+        }
+
+        public int InsertOrUpdateWallet(Wallet w)
+        {
+            lock (_collisionLock)
+            {
+                if (w.CurrencyId != 0)
+                {
+                    _database.Update(w);
+                    return w.CurrencyId;
+                }
+                else
+                {
+                    _database.Insert(w);
+                    return w.CurrencyId;
+                }
+            }
+        }
     }
 }

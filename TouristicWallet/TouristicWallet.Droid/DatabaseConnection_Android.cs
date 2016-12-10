@@ -6,7 +6,7 @@ using TouristicWallet;
 [assembly: Xamarin.Forms.Dependency(typeof(DatabaseConnection_Android))]
 namespace LocalDataAccess.Droid
 {
-    public class DatabaseConnection_Android : IDatabaseConnection
+    public class DatabaseConnection_Android : TouristicWallet.Data.IDatabaseConnection
     {
         public SQLiteConnection DbConnection()
         {

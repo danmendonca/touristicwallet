@@ -46,17 +46,14 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WalletManagementViewModel.cs" />
     <Compile Include="ViewModels\WalletPageViewModel.cs" />
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Views\ConvertPage.xaml.cs">
+      <DependentUpon>ConvertPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WalletManagementPage.xaml.cs">
       <DependentUpon>WalletManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WalletPage.xaml.cs">
       <DependentUpon>WalletPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ConversionPage.xaml.cs">
-      <DependentUpon>ConversionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,26 +131,21 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Views\ConversionPage.xaml">
+    <EmbeddedResource Include="Views\ConvertPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\MainPage.xaml">
+    <EmbeddedResource Include="Views\WalletManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\WalletManagementPage.xaml">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WalletPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\WalletPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-using TouristicWallet.utils;
-using TouristicWallet.Data;
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TouristicWallet.Data;
 using TouristicWallet.Models;
+using TouristicWallet.utils;
+using Xamarin.Forms;
 
-namespace TouristicWallet.View
+namespace TouristicWallet.Views
 {
-    public partial class ConversionPage : ContentPage
+    public partial class ConvertPage : ContentPage
     {
-
         private static object collisionLock = new object();
         List<Balance> balances = new List<Balance>();
         CurrencyDataAccess dataAccess = new CurrencyDataAccess();
@@ -29,19 +31,15 @@ namespace TouristicWallet.View
 
         bool destCurrencyAvailable = true, allAvailable = true;
 
-        public ConversionPage(string convertTo)
+        public ConvertPage(string convertTo)
         {
             this.convertTo = convertTo;
             InitializeComponent();
-            balances.Add(new Balance("USD", 12.0));
-            balances.Add(new Balance("GBP", 23.5));
-            balances.Add(new Balance("EUR", 5.75));
-            balances.Add(new Balance("AED", 12.0));
-            balances.Add(new Balance("BSD", 23.5));
-            balances.Add(new Balance("CNY", 5.75));
-            balances.Add(new Balance("GTQ", 12.0));
-            balances.Add(new Balance("KWD", 23.5));
-            balances.Add(new Balance("NAD", 5.75));
+
+            foreach(var wall in WalletDataAccess.Instance.GetWalletWithMoney())
+            {
+                balances.Add(new Balance(wall.Currency.Initials,wall.Amount));
+            }
 
             fullWith = padding + 2 * balances.Count * (colWith + colGap);
             if (WebService.IsConnected())
