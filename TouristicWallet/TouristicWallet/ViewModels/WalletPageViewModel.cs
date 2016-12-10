@@ -8,6 +8,7 @@ using TouristicWallet.Models;
 using TouristicWallet.Data;
 using System.Windows.Input;
 using Xamarin.Forms;
+using TouristicWallet.Views;
 
 namespace TouristicWallet.ViewModels
 {
@@ -37,8 +38,18 @@ namespace TouristicWallet.ViewModels
             Wallet = wda.GetOwned().ToList(); 
             DefaultText = "Hello";
 
-            this.GoToManagement = new Command ( async () => await Navigation.PushAsync(new Views.WalletManagementPage()) );
+            this.GoToManagement = new Command ( async () => {
+                WalletManagementPage wmp = new WalletManagementPage();
+                wmp.ReturningEvent += Wmp_ReturningEvent; 
+                await Navigation.PushAsync(wmp);
+            });
         }
 
+        private void Wmp_ReturningEvent(object sender, EventArgs e)
+        {
+            ((WalletManagementPage)sender).ReturningEvent -= Wmp_ReturningEvent;
+            WalletDataAccess wda = WalletDataAccess.Instance;
+            Wallet = wda.GetOwned().ToList();
+        }
     }
 }

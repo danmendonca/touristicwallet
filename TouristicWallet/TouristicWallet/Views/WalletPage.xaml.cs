@@ -15,5 +15,19 @@ namespace TouristicWallet.Views
         {
             InitializeComponent();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            NavigationPage navPage = (NavigationPage)App.Current.MainPage;
+            IReadOnlyList<Page> modStack = navPage.Navigation.ModalStack;
+            int modalCount = modStack.Count;
+            bool noModals = modalCount == 0 || (modalCount == 1 && modStack[0] is NavigationPage);
+
+            if (noModals)
+            {
+                return base.OnBackButtonPressed();
+            }
+            return true;
+        }
     }
 }

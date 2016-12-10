@@ -10,18 +10,19 @@ namespace TouristicWallet.Views
 {
     public partial class WalletManagementPage : ContentPage
     {
+
+        public event EventHandler ReturningEvent;
+
         public WalletManagementPage()
         {
             InitializeComponent();
         }
 
-        public void Toggled_handler(object sender, ToggledEventArgs e)
+        protected override bool OnBackButtonPressed()
         {
-            Boolean a = e.Value;
-            if (a)
-            {
-                a = !a;
-            }
+
+            ReturningEvent?.Invoke(this, new EventArgs());
+            return base.OnBackButtonPressed();
         }
     }
 }
