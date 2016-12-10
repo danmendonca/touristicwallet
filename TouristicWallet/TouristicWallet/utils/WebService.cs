@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,6 +40,11 @@ namespace TouristicWallet.utils
                         state.Item1(content);
                     }
             }
+        }
+
+        public static bool IsConnected()
+        {
+            return CrossConnectivity.Current.IsConnected; 
         }
     }
 }

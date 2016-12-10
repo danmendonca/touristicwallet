@@ -7,6 +7,7 @@
     "sqlite-net-pcl": "1.2.1",
     "SQLitePCL.bundle_green": "0.9.3",
     "SQLitePCL.raw": "0.9.3",
+    "Xam.Plugin.Connectivity": "2.2.12",
     "Xamarin.Forms": "2.3.3.175"
   },
   "frameworks": {

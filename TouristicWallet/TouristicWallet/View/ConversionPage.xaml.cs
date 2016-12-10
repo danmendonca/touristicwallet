@@ -12,6 +12,8 @@ namespace TouristicWallet.View
 {
     public partial class ConversionPage : ContentPage
     {
+
+        private static object collisionLock = new object();
         List<Balance> balances = new List<Balance>();
         CurrencyDataAccess dataAccess = new CurrencyDataAccess();
         string convertTo = "EUR";
@@ -25,8 +27,11 @@ namespace TouristicWallet.View
         float colGap = 20f;
         float fullWith = 0;
 
-        public ConversionPage()
+        bool destCurrencyAvailable = true, allAvailable = true;
+
+        public ConversionPage(string convertTo)
         {
+            this.convertTo = convertTo;
             InitializeComponent();
             balances.Add(new Balance("USD", 12.0));
             balances.Add(new Balance("GBP", 23.5));
@@ -39,7 +44,40 @@ namespace TouristicWallet.View
             balances.Add(new Balance("NAD", 5.75));
 
             fullWith = padding + 2 * balances.Count * (colWith + colGap);
-            convert();
+            if (WebService.IsConnected())
+                onlineConvert();
+            else
+            {
+                offlineConvert();
+            }
+        }
+
+        private void offlineConvert()
+        {
+            Currency dest = dataAccess.GetCurrency(convertTo);
+            if (dest == null)
+            {
+                destCurrencyAvailable = false;
+                invalidate();
+                return;
+            }
+            foreach (var saldo in balances)
+            {
+                Currency src = dataAccess.GetCurrency(saldo.initials);
+                if (src != null)
+                {
+                    saldo.amountConverted = saldo.amount * src.RateToEUR / dest.RateToEUR;
+                    sumBalance += saldo.amountConverted;
+                    maxBalance = Math.Max(maxBalance, saldo.amount);
+                    maxBalance = Math.Max(maxBalance, saldo.amountConverted);
+                    invalidate();
+                }
+                else
+                {
+                    saldo.amountConverted = 0;
+                    allAvailable = false;
+                }
+            }
         }
 
         //handle scroll
@@ -55,11 +93,13 @@ namespace TouristicWallet.View
             lastPanX = e.TotalX;
             deltaX = (deltaX > 0) ? 0 : deltaX;
             float maxDelta = -(fullWith - CView.CanvasSize.Width + padding);
+            if (CView.CanvasSize.Width >= fullWith)
+                return;
             deltaX = (deltaX < maxDelta) ? maxDelta : deltaX;
-            CView.InvalidateSurface();
+            invalidate();
         }
 
-        private void convert()
+        private void onlineConvert()
         {
             //get rate to destination
             string url =
@@ -101,21 +141,29 @@ namespace TouristicWallet.View
 
             foreach (var saldo in balances)
             {
-                if (saldo.initials.Equals(initials))
+                if (saldo.initials.Equals(initials) && saldo.amountConverted == -1)
                 {
-                    Device.BeginInvokeOnMainThread(() =>
+                    lock (collisionLock)
                     {
-                        saldo.amountConverted = saldo.amount * dataAccess.GetCurrency(saldo.initials).RateToEUR / dest.RateToEUR;
+                        saldo.amountConverted =
+                            saldo.amount * dataAccess.GetCurrency(saldo.initials).RateToEUR / dest.RateToEUR;
                         sumBalance += saldo.amountConverted;
                         maxBalance = Math.Max(maxBalance, saldo.amount);
                         maxBalance = Math.Max(maxBalance, saldo.amountConverted);
-                        CView.InvalidateSurface();
-                    });
+                        invalidate();
+                    }
                 }
 
             }
         }
 
+        private void invalidate()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                CView.InvalidateSurface();
+            });
+        }
 
         private void OnPaintDrawing(object sender, SKPaintSurfaceEventArgs e)
         {
@@ -132,8 +180,19 @@ namespace TouristicWallet.View
                 paint.TextAlign = SKTextAlign.Center;
                 paint.TextSize = 24;
                 paint.Color = Color.Blue.ToSKColor();
+                if (!destCurrencyAvailable)
+                {
+                    canvas.DrawText("Destination Currency Unavailable", with / 2, height / 2, paint);
+                    canvas.DrawText("No internet connection", with / 2, height / 2 + 20, paint);
+                    return;
+                }
+                if (!allAvailable)
+                {
+                    canvas.DrawText("Some Currencies Are Unavailable", with / 2, (height / 5) / 3, paint);
+                    canvas.DrawText("No internet connection", with / 2, (height / 5) / 3 + 20, paint);
+                }
                 string str = "Total: " + sumBalance.ToString("0.00") + " " + convertTo;
-                canvas.DrawText(str, with / 2, (height / 5) / 2, paint);
+                canvas.DrawText(str, with / 2, (height / 5) * 2 / 3, paint);
 
                 canvas.Translate((float)deltaX, 0);
 

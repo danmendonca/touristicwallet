@@ -13,7 +13,7 @@ namespace TouristicWallet
         {
             InitializeComponent();
             CurrencyScrapping.PrepareCurrencies();
-            Navigation.PushAsync(new ConversionPage());
+            Navigation.PushAsync(new ConversionPage("EUR"));
         }
     }
 }
