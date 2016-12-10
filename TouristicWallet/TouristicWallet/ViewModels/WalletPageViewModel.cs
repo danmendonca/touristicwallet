@@ -33,28 +33,9 @@ namespace TouristicWallet.ViewModels
 
         public WalletPageViewModel()
         {
-            Wallet = new List<Wallet>(); //todo load from db
+            WalletDataAccess wda = WalletDataAccess.Instance;
+            Wallet = wda.GetOwned().ToList(); 
             DefaultText = "Hello";
-
-
-            /*
-             * Dummy content
-             * */
-            CurrencyDataAccess cda = new CurrencyDataAccess();
-            List<Currency> currencies = cda.GetCurrencies().ToList();
-
-            List<Currency> some = currencies.Where(c => c.Initials.Contains("E") == true).ToList();
-
-            foreach (var item in some)
-            {
-                Wallet w = new Wallet();
-                w.Amount = 0.0;
-                w.CurrencyId = item.Id;
-                Wallet.Add(w);
-            }
-            /* end dummy content */
-
-            OnPropertyChanged(nameof(Wallet));
 
             this.GoToManagement = new Command ( async () => await Navigation.PushAsync(new Views.WalletManagementPage()) );
         }

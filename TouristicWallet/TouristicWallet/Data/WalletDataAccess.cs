@@ -28,7 +28,7 @@ namespace TouristicWallet.Data
             }
         }
 
-        public ObservableCollection<Wallet> Wallet { get; set; }
+        public IEnumerable<Wallet> Wallet { get; set; }
 
         private WalletDataAccess()
         {
@@ -36,7 +36,7 @@ namespace TouristicWallet.Data
             {
                 _database = DependencyService.Get<IDatabaseConnection>().DbConnection();
                 _database.CreateTable<Wallet>();
-                Wallet = new ObservableCollection<Models.Wallet>();
+                Wallet = _database.Table<Wallet>().ToList();
             }
         }
 
@@ -109,9 +109,9 @@ namespace TouristicWallet.Data
         }
 
 
-        public ObservableCollection<Wallet> UpdateWallet()
+        public IEnumerable<Wallet> UpdateWallet()
         {
-            Wallet = new ObservableCollection<Models.Wallet>();
+            Wallet = _database.Table<Wallet>().ToList();
             return Wallet;
         }
     }
