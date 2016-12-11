@@ -17,14 +17,26 @@
   </ContentPage.Resources>
 
   <StackLayout>
-    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}">
+    <SearchBar Placeholder="{Binding PlaceHolderFilter, Mode=OneWay}" Text="{Binding Filter, Mode=TwoWay}" HeightRequest="50" />
+    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}" RowHeight="60">
+      <ListView.BackgroundColor>
+        <OnPlatform x:TypeArguments="Color">
+          <OnPlatform.iOS>#e9efed</OnPlatform.iOS>
+        </OnPlatform>
+      </ListView.BackgroundColor>
+      <ListView.RowHeight>
+        <OnPlatform x:TypeArguments="x:Int32">
+          <OnPlatform.iOS>60</OnPlatform.iOS>
+          <OnPlatform.Android>70</OnPlatform.Android>
+          <OnPlatform.WinPhone>70</OnPlatform.WinPhone>
+        </OnPlatform>
+      </ListView.RowHeight>
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal">
+              <Switch IsToggled="{Binding IsOwned, Mode=TwoWay}" />
               <Label Text="{Binding Currency.Initials, Mode=OneWay}" />
-              <Switch IsToggled="{Binding IsOwned, Mode=TwoWay}"
-                      />
             </StackLayout>
           </ViewCell>
         </DataTemplate>
