@@ -43,11 +43,18 @@
     <Compile Include="Data\IDatabaseConnection.cs" />
     <Compile Include="Data\WalletDataAccess.cs" />
     <Compile Include="Models\Wallet.cs" />
+    <Compile Include="ViewModels\MasterPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WalletManagementViewModel.cs" />
     <Compile Include="ViewModels\WalletPageViewModel.cs" />
     <Compile Include="Views\ConvertPage.xaml.cs">
       <DependentUpon>ConvertPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Master.xaml.cs">
+      <DependentUpon>Master.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WalletManagementPage.xaml.cs">
       <DependentUpon>WalletManagementPage.xaml</DependentUpon>
@@ -144,6 +151,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WalletPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Master.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

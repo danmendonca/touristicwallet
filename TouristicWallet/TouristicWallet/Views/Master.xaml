@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TouristicWallet.Views.Master"
+             xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
+             Title="Wallet"
+             Icon="menu-512.png"
+             BackgroundColor="#C2C2C2">
+
+  <ContentPage.BindingContext>
+    <vm:MasterPageViewModel x:Name="ViewModel"/>
+  </ContentPage.BindingContext>
+
+  <StackLayout>
+    <Button Text="Edit Owned"
+            Command="{Binding GoToManagement}"/>
+  </StackLayout>
+  
+</ContentPage>

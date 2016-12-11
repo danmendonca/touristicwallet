@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TouristicWallet.Data;
 using TouristicWallet.Models;
 using TouristicWallet.utils;
@@ -11,6 +12,15 @@ namespace TouristicWallet
 {
     public partial class App : Application
     {
+
+        public static MasterDetailPage MasterDetail { get; set; }
+
+        public async static Task NavigateMasterDetail(Page page)
+        {
+            MasterDetail.IsPresented = false;
+            await MasterDetail.Detail.Navigation.PushAsync(page);
+        }
+
         public App()
         {
             InitializeComponent();
@@ -32,8 +42,9 @@ namespace TouristicWallet
             WalletDataAccess.Instance.InsertOrUpdateWallet(w3);
 
             MainPage = new NavigationPage( new Views.ConvertPage("EUR"));*/
-            MainPage = new NavigationPage(new Views.WalletPage());
-            ViewModels.ViewModelBase.Navigation = MainPage.Navigation;
+            //MainPage = new NavigationPage(new Views.WalletPage());
+            MainPage = new Views.MainPage();
+            //ViewModels.ViewModelBase.Navigation = MainPage.Navigation;
         }
 
         protected override void OnStart()

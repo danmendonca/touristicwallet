@@ -29,7 +29,7 @@ namespace TouristicWallet.ViewModels
             set { _defaultText = value; }
         }
 
-        public ICommand GoToManagement { get; set; }
+        //public ICommand GoToManagement { get; set; }
 
 
         public WalletPageViewModel()
@@ -38,18 +38,13 @@ namespace TouristicWallet.ViewModels
             Wallet = wda.GetOwned().ToList(); 
             DefaultText = "Hello";
 
-            this.GoToManagement = new Command ( async () => {
-                WalletManagementPage wmp = new WalletManagementPage();
-                wmp.ReturningEvent += Wmp_ReturningEvent; 
-                await Navigation.PushAsync(wmp);
-            });
-        }
-
-        private void Wmp_ReturningEvent(object sender, EventArgs e)
-        {
-            ((WalletManagementPage)sender).ReturningEvent -= Wmp_ReturningEvent;
-            WalletDataAccess wda = WalletDataAccess.Instance;
-            //Wallet = wda.GetOwned().ToList();
+            //this.GoToManagement = new Command(
+            //    async () => {
+            //        //WalletManagementPage wmp = new WalletManagementPage();
+            //        //wmp.ReturningEvent += Wmp_ReturningEvent; 
+            //        //await Navigation.PushAsync(wmp);
+            //        await App.NavigateMasterDetail(new WalletManagementPage());
+            //    });
         }
 
         public void Update()

@@ -3,23 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TouristicWallet;
 
 using Xamarin.Forms;
 
 namespace TouristicWallet.Views
 {
-    public partial class WalletPage : ContentPage
+    public partial class Master : ContentPage
     {
-        public WalletPage()
+        public Master()
         {
             InitializeComponent();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.Update();
         }
     }
 }

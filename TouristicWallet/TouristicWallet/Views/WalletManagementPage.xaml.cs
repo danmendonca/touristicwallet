@@ -17,12 +17,5 @@ namespace TouristicWallet.Views
         {
             InitializeComponent();
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-
-            ReturningEvent?.Invoke(this, new EventArgs());
-            return base.OnBackButtonPressed();
-        }
     }
 }

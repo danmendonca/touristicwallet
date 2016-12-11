@@ -18,13 +18,11 @@
   </ContentPage.Resources>
 
   <StackLayout>
-    <Button Text="Edit Owned"
-            Command="{Binding GoToManagement}"/>
-
     <ListView x:Name="MyCurrencies" ItemsSource="{Binding Wallet, Mode=OneWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
+   
             <StackLayout>
               <Label Text="{Binding CurrencyId, Converter={StaticResource idToCodeConverter}}"/>
             </StackLayout>
