@@ -17,7 +17,9 @@ namespace TouristicWallet
 
         public async static Task NavigateMasterDetail(Page page)
         {
-            MasterDetail.IsPresented = false;
+
+            if(Device.Idiom != TargetIdiom.Desktop)
+                MasterDetail.IsPresented = false;
             await MasterDetail.Detail.Navigation.PushAsync(page);
         }
 

@@ -4,7 +4,7 @@
              x:Class="TouristicWallet.Views.Master"
              xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
              Title="Wallet"
-             Icon="menu-512.png"
+             Icon="menu.png"
              BackgroundColor="#C2C2C2">
 
   <ContentPage.BindingContext>
