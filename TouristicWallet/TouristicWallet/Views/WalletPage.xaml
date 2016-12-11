@@ -4,6 +4,7 @@
              x:Class="TouristicWallet.Views.WalletPage"
              xmlns:vm="clr-namespace:TouristicWallet.ViewModels;"
              xmlns:converters="clr-namespace:TouristicWallet.Converters"
+             Title="Wallet"
              >
 
   <ContentPage.BindingContext>

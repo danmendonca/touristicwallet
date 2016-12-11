@@ -4,6 +4,7 @@
              x:Class="TouristicWallet.Views.WalletManagementPage"
              xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
              xmlns:converters="clr-namespace:TouristicWallet.Converters"
+             Title="Currencies"
              >
 
   <ContentPage.BindingContext>
@@ -17,28 +18,18 @@
   </ContentPage.Resources>
 
   <StackLayout>
-    <SearchBar Placeholder="{Binding PlaceHolderFilter, Mode=OneWay}" Text="{Binding Filter, Mode=TwoWay}" HeightRequest="50" />
-    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}" RowHeight="60">
-      <ListView.BackgroundColor>
-        <OnPlatform x:TypeArguments="Color">
-          <OnPlatform.iOS>#e9efed</OnPlatform.iOS>
-        </OnPlatform>
-      </ListView.BackgroundColor>
-      <ListView.RowHeight>
-        <OnPlatform x:TypeArguments="x:Int32">
-          <OnPlatform.iOS>60</OnPlatform.iOS>
-          <OnPlatform.Android>70</OnPlatform.Android>
-          <OnPlatform.WinPhone>70</OnPlatform.WinPhone>
-        </OnPlatform>
-      </ListView.RowHeight>
+    <SearchBar Placeholder="{Binding PlaceHolderFilter, Mode=OneWay}" Text="{Binding Filter, Mode=TwoWay}"/>
+    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <ViewCell>
+          <SwitchCell Text="{Binding Currency.Initials, Mode=OneWay}" On="{Binding IsOwned, Mode=TwoWay}" />
+          <!--<ViewCell>
             <StackLayout Orientation="Horizontal">
-              <Switch IsToggled="{Binding IsOwned, Mode=TwoWay}" />
-              <Label Text="{Binding Currency.Initials, Mode=OneWay}" />
+             
+              <Label Text="{Binding Currency.Initials, Mode=OneWay}" VerticalOptions="Center"/>
+              <Switch IsToggled="{Binding IsOwned, Mode=TwoWay}"/>
             </StackLayout>
-          </ViewCell>
+          </ViewCell>-->
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
