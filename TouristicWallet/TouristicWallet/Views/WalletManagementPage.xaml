@@ -22,7 +22,7 @@
     <ListView x:Name="MyCurrencies" ItemsSource="{Binding Currencies, Mode=OneWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <SwitchCell Text="{Binding Currency.Initials, Mode=OneWay}" On="{Binding IsOwned, Mode=TwoWay}" />
+          <SwitchCell Text="{Binding Currency.CodeAndName, Mode=OneWay}" On="{Binding IsOwned, Mode=TwoWay}" />
           <!--<ViewCell>
             <StackLayout Orientation="Horizontal">
              

@@ -13,6 +13,13 @@ namespace TouristicWallet.Views
         public Master()
         {
             InitializeComponent();
+            ViewModel.Picker = picker;
+            ViewModel.Update();
+        }
+
+        public void Update()
+        {
+            ViewModel.Update();
         }
     }
 }
