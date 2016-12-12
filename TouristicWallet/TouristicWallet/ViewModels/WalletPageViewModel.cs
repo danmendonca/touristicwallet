@@ -14,8 +14,6 @@ namespace TouristicWallet.ViewModels
 {
     public class WalletPageViewModel : ViewModelBase
     {
-
-
         private List<Wallet> _currenciesWallet;
         public List<Wallet> Wallet {
             get { return _currenciesWallet; }
@@ -30,14 +28,21 @@ namespace TouristicWallet.ViewModels
         }
 
         //public ICommand GoToManagement { get; set; }
-
+        public ICommand GoToConversion { get; set; }
 
         public WalletPageViewModel()
         {
             WalletDataAccess wda = WalletDataAccess.Instance;
             Wallet = wda.GetOwned().ToList(); 
             DefaultText = "Hello";
-
+            GoToConversion = new Command(async () =>
+            {
+                foreach (var item in Wallet)
+                {
+                    WalletDataAccess.Instance.InsertOrUpdateWallet(item);
+                }
+                await App.NavigateMasterDetail(new ConvertPage(WalletPage.getSelectedCurrency()));
+            });
             //this.GoToManagement = new Command(
             //    async () => {
             //        //WalletManagementPage wmp = new WalletManagementPage();

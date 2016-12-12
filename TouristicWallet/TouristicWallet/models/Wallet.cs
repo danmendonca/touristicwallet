@@ -40,7 +40,7 @@ namespace TouristicWallet.Models
         public double Amount
         {
             get { return _amount; }
-            set { _amount = value; }
+            set { _amount = value;}
         }
 
         public Currency getCurrency()

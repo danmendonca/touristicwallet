@@ -24,13 +24,13 @@
           <ViewCell>
             <StackLayout Orientation="Horizontal">
               <Label Text="{Binding CurrencyId, Converter={StaticResource idToCodeConverter}}"/>
-              <Entry Text="{Binding Amount}"/>
+              <Entry Text="{Binding Amount, Mode=TwoWay}"/>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
+    <Picker x:Name="picker"/>
+    <Button Text="Convert" Command="{Binding GoToConversion}"/>
   </StackLayout>
-
-  <!--<Label Text="{Binding DefaultText}" VerticalOptions="Center" HorizontalOptions="Center"/>-->
 </ContentPage>
