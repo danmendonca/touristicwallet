@@ -22,14 +22,14 @@
         <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
       </Button.TextColor>
     </Button>
-    <Button Text="Button" Command="{Binding GoToManagement}">
+    <!--<Button Text="Button" Command="{Binding GoToManagement}">
       <Button.BorderColor>
         <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
       </Button.BorderColor>
       <Button.TextColor>
         <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
       </Button.TextColor>
-    </Button>
+    </Button>-->
   </StackLayout>
   
 </ContentPage>
