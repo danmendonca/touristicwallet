@@ -18,13 +18,13 @@
   </ContentPage.Resources>
 
   <StackLayout>
-    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Wallet, Mode=OneWay}">
+    <ListView x:Name="MyCurrencies" ItemsSource="{Binding Wallet, Mode=TwoWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-   
-            <StackLayout>
+            <StackLayout Orientation="Horizontal">
               <Label Text="{Binding CurrencyId, Converter={StaticResource idToCodeConverter}}"/>
+              <Entry Text="{Binding Amount}"/>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
