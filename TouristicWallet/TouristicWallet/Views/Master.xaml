@@ -5,15 +5,31 @@
              xmlns:vm="clr-namespace:TouristicWallet.ViewModels"
              Title="Wallet"
              Icon="menu.png"
-             BackgroundColor="#C2C2C2">
+             BackgroundColor="#1E1E1E">
 
   <ContentPage.BindingContext>
     <vm:MasterPageViewModel x:Name="ViewModel"/>
   </ContentPage.BindingContext>
 
   <StackLayout>
-    <Button Text="Edit Owned"
-            Command="{Binding GoToManagement}"/>
+    
+    <Label FontSize="Medium" Text="Menu" TextColor="White" HorizontalTextAlignment="Center"/>
+    <Button Text="Edit Owned" Command="{Binding GoToManagement}" BorderColor="White" >
+      <Button.BorderColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.BorderColor>
+      <Button.TextColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.TextColor>
+    </Button>
+    <Button Text="Button" Command="{Binding GoToManagement}">
+      <Button.BorderColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.BorderColor>
+      <Button.TextColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.TextColor>
+    </Button>
   </StackLayout>
   
 </ContentPage>
