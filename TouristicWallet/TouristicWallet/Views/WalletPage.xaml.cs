@@ -14,13 +14,18 @@ namespace TouristicWallet.Views
         public WalletPage()
         {
             InitializeComponent();
-            ViewModel.picker = picker;
+            //ViewModel.picker = picker;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             ViewModel.Update();
+
+            if(App.MasterDetail.Master is Master)
+            {
+                ((Master)App.MasterDetail.Master).Update();
+            }
         }
     }
 }

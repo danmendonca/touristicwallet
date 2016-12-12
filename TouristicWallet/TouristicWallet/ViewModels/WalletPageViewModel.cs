@@ -29,21 +29,21 @@ namespace TouristicWallet.ViewModels
         }
 
         //public ICommand GoToManagement { get; set; }
-        public ICommand GoToConversion { get; set; }
+        //public ICommand GoToConversion { get; set; }
 
         public WalletPageViewModel()
         {
             WalletDataAccess wda = WalletDataAccess.Instance;
             Wallet = wda.GetOwned().ToList(); 
             DefaultText = "Hello";
-            GoToConversion = new Command(async () =>
-            {
-                foreach (var item in Wallet)
-                {
-                    WalletDataAccess.Instance.InsertOrUpdateWallet(item);
-                }
-                await App.NavigateMasterDetail(new ConvertPage(picker.Items[picker.SelectedIndex]));
-            });
+            //GoToConversion = new Command(async () =>
+            //{
+            //    foreach (var item in Wallet)
+            //    {
+            //        WalletDataAccess.Instance.InsertOrUpdateWallet(item);
+            //    }
+            //    await App.NavigateMasterDetail(new ConvertPage(picker.Items[picker.SelectedIndex]));
+            //});
             //this.GoToManagement = new Command(
             //    async () => {
             //        //WalletManagementPage wmp = new WalletManagementPage();
@@ -55,18 +55,18 @@ namespace TouristicWallet.ViewModels
 
         public void Update()
         {
-            WalletDataAccess wda = WalletDataAccess.Instance;
-            Wallet = wda.GetOwned().ToList();
-            picker.Items.Clear();
-            foreach (var item in Wallet)
-            {
-                picker.Items.Add(item.Currency.Initials);
-            }
+            //WalletDataAccess wda = WalletDataAccess.Instance;
+            //Wallet = wda.GetOwned().ToList();
+            //picker.Items.Clear();
+            //foreach (var item in Wallet)
+            //{
+            //    picker.Items.Add(item.Currency.Initials);
+            //}
 
-            if (Wallet.Count > 0)
-            {
-                picker.SelectedIndex = 0;
-            }
+            //if (Wallet.Count > 0)
+            //{
+            //    picker.SelectedIndex = 0;
+            //}
         }
     }
 }

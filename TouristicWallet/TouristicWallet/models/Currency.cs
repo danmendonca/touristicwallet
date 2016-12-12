@@ -76,6 +76,13 @@ namespace TouristicWallet.Models
             }
         }
 
+        public String CodeAndName {
+            get
+            {
+                return $"{this.Initials} - {this.Name}";
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {

@@ -12,7 +12,7 @@
   </ContentPage.BindingContext>
 
   <StackLayout>
-    
+
     <Label FontSize="Medium" Text="Menu" TextColor="White" HorizontalTextAlignment="Center"/>
     <Button Text="Edit Owned" Command="{Binding GoToManagement}" BorderColor="White" >
       <Button.BorderColor>
@@ -22,6 +22,17 @@
         <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
       </Button.TextColor>
     </Button>
+    <StackLayout Orientation="Horizontal">
+      <Picker x:Name="picker" TextColor="White"/>
+      <Button Text="Convert" Command="{Binding GoToConversion}" HorizontalOptions="EndAndExpand">
+        <Button.BorderColor>
+          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+        </Button.BorderColor>
+        <Button.TextColor>
+          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+        </Button.TextColor>
+      </Button>
+    </StackLayout>
     <!--<Button Text="Button" Command="{Binding GoToManagement}">
       <Button.BorderColor>
         <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
@@ -31,5 +42,5 @@
       </Button.TextColor>
     </Button>-->
   </StackLayout>
-  
+
 </ContentPage>
