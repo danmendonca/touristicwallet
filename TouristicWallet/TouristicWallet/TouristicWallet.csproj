@@ -43,6 +43,7 @@
     <Compile Include="Data\IDatabaseConnection.cs" />
     <Compile Include="Data\WalletDataAccess.cs" />
     <Compile Include="Models\Wallet.cs" />
+    <Compile Include="ViewModels\ConvertPageViewModel.cs" />
     <Compile Include="ViewModels\MasterPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WalletManagementViewModel.cs" />
