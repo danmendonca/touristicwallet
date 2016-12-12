@@ -14,6 +14,7 @@ namespace TouristicWallet.ViewModels
 {
     public class WalletPageViewModel : ViewModelBase
     {
+        public Picker picker;
         private List<Wallet> _currenciesWallet;
         public List<Wallet> Wallet {
             get { return _currenciesWallet; }
@@ -41,7 +42,7 @@ namespace TouristicWallet.ViewModels
                 {
                     WalletDataAccess.Instance.InsertOrUpdateWallet(item);
                 }
-                await App.NavigateMasterDetail(new ConvertPage(WalletPage.getSelectedCurrency()));
+                await App.NavigateMasterDetail(new ConvertPage(picker.Items[picker.SelectedIndex]));
             });
             //this.GoToManagement = new Command(
             //    async () => {
@@ -56,6 +57,16 @@ namespace TouristicWallet.ViewModels
         {
             WalletDataAccess wda = WalletDataAccess.Instance;
             Wallet = wda.GetOwned().ToList();
+            picker.Items.Clear();
+            foreach (var item in Wallet)
+            {
+                picker.Items.Add(item.Currency.Initials);
+            }
+
+            if (Wallet.Count > 0)
+            {
+                picker.SelectedIndex = 0;
+            }
         }
     }
 }
