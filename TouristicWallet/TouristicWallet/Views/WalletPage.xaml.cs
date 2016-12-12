@@ -11,28 +11,16 @@ namespace TouristicWallet.Views
 {
     public partial class WalletPage : ContentPage
     {
-        static Picker pick;
-
         public WalletPage()
         {
             InitializeComponent();
-            foreach (var item in WalletDataAccess.Instance.GetOwned())
-            {
-                picker.Items.Add(item.Currency.Initials);
-            }
-            picker.SelectedIndex = 0;
-            pick = picker;
+            ViewModel.picker = picker;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             ViewModel.Update();
-        }
-
-        public static string getSelectedCurrency()
-        {
-            return pick.Items[pick.SelectedIndex];
         }
     }
 }
