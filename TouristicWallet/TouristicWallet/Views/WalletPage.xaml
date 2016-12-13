@@ -24,7 +24,8 @@
           <ViewCell>
             <StackLayout Orientation="Horizontal">
               <Label Text="{Binding CurrencyId, Converter={StaticResource idToCodeConverter}}"/>
-              <Entry Text="{Binding Amount, Mode=TwoWay}" HorizontalOptions="EndAndExpand" Completed="Completed_EntryHandler"/>
+              <Entry Text="{Binding Amount, Mode=TwoWay}" HorizontalOptions="EndAndExpand" Completed="Completed_EntryHandler"
+                     Keyboard="Numeric" />
             </StackLayout>
           </ViewCell>
         </DataTemplate>

@@ -14,6 +14,7 @@ namespace TouristicWallet.Views
         {
             InitializeComponent();
             ViewModel.Picker = picker;
+            //picker2 = picker;
             ViewModel.Update();
         }
 

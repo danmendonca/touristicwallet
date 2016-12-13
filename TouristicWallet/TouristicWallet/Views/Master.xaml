@@ -11,10 +11,52 @@
     <vm:MasterPageViewModel x:Name="ViewModel"/>
   </ContentPage.BindingContext>
 
-  <StackLayout>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="35"/>
+      <RowDefinition Height="35"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <Label FontSize="Medium" Text="Menu" TextColor="White" HorizontalTextAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+    
+    <Button Text="Edit Owned" Command="{Binding GoToManagement}" BorderColor="White"
+                Grid.Row="1" Grid.Column="0" >
+      <Button.BorderColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.BorderColor>
+      <Button.TextColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.TextColor>
+    </Button>
+
+    <Button Text="Convert" Command="{Binding GoToConversion}"
+            Grid.Row="2" Grid.Column="0" >
+      <Button.BorderColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.BorderColor>
+      <Button.TextColor>
+        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+      </Button.TextColor>
+    </Button>
+    <Picker x:Name="picker" TextColor="White"
+            Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" />
+    
+
+  </Grid>
+
+
+  <!--<StackLayout>
 
     <Label FontSize="Medium" Text="Menu" TextColor="White" HorizontalTextAlignment="Center"/>
-    <Button Text="Edit Owned" Command="{Binding GoToManagement}" BorderColor="White" >
+    <Button Text="Edit Owned" Command="{Binding GoToManagement}" BorderColor="White" HorizontalOptions="Start">
       <Button.BorderColor>
         <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
       </Button.BorderColor>
@@ -24,7 +66,7 @@
     </Button>
     <StackLayout Orientation="Horizontal">
       <Picker x:Name="picker" TextColor="White"/>
-      <Button Text="Convert" Command="{Binding GoToConversion}" HorizontalOptions="EndAndExpand">
+      <Button Text="Convert" Command="{Binding GoToConversion}" HorizontalOptions="CenterAndExpand">
         <Button.BorderColor>
           <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
         </Button.BorderColor>
@@ -33,14 +75,17 @@
         </Button.TextColor>
       </Button>
     </StackLayout>
-    <!--<Button Text="Button" Command="{Binding GoToManagement}">
-      <Button.BorderColor>
-        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-      </Button.BorderColor>
-      <Button.TextColor>
-        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-      </Button.TextColor>
-    </Button>-->
-  </StackLayout>
+    <StackLayout Orientation="Horizontal">
+      <Button Text="Convert" Command="{Binding GoToConversion}" HorizontalOptions="Start">
+        <Button.BorderColor>
+          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+        </Button.BorderColor>
+        <Button.TextColor>
+          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
+        </Button.TextColor>
+      </Button>
+      <Picker x:Name="picker2" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+    </StackLayout>
+  </StackLayout>-->
 
 </ContentPage>
