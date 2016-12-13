@@ -28,25 +28,7 @@ namespace TouristicWallet
             InitializeComponent();
 
             CurrencyScrapping.PrepareCurrencies();
-
-            /* //teste code
-            Wallet w = new Wallet(2);
-            w.Amount = 10;
-            Wallet w1 = new Wallet(3);
-            Wallet w2 = new Wallet(4);
-            Wallet w3 = new Wallet(5);
-            w1.Amount = 20;
-            w2.Amount = 30;
-            w3.Amount = 40;
-            WalletDataAccess.Instance.InsertOrUpdateWallet(w);
-            WalletDataAccess.Instance.InsertOrUpdateWallet(w1);
-            WalletDataAccess.Instance.InsertOrUpdateWallet(w2);
-            WalletDataAccess.Instance.InsertOrUpdateWallet(w3);
-
-            MainPage = new NavigationPage( new Views.ConvertPage("EUR"));*/
-            //MainPage = new NavigationPage(new Views.WalletPage());
             MainPage = new Views.MainPage();
-            //ViewModels.ViewModelBase.Navigation = MainPage.Navigation;
         }
 
         protected override void OnStart()
