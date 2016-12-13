@@ -27,5 +27,10 @@ namespace TouristicWallet.Views
                 ((Master)App.MasterDetail.Master).Update();
             }
         }
+
+        public void Completed_EntryHandler(object sender, EventArgs e)
+        {
+            ViewModel.Save();
+        }
     }
 }

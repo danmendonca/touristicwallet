@@ -31,7 +31,7 @@ namespace TouristicWallet.Models
         public Int32 CurrencyId
         {
             get { return _currencyId; }
-            set { _currencyId = value;}
+            set { _currencyId = value; }
         }
 
         private double _amount;
@@ -40,7 +40,7 @@ namespace TouristicWallet.Models
         public double Amount
         {
             get { return _amount; }
-            set { _amount = value;}
+            set { _amount = value; }
         }
 
         public Currency getCurrency()

@@ -142,5 +142,16 @@ namespace TouristicWallet.Data
                 }
             }
         }
+
+        public int InsertOrUpdate(List<Wallet> ws)
+        {
+            int count = 0;
+            foreach (var item in ws)
+            {
+                InsertOrUpdateWallet(item);
+                count++;
+            }
+            return count;
+        }
     }
 }

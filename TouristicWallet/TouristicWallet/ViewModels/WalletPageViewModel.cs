@@ -32,5 +32,10 @@ namespace TouristicWallet.ViewModels
             WalletDataAccess wda = WalletDataAccess.Instance;
             Wallet = wda.GetOwned().ToList();
         }
+
+        public void Save()
+        {
+            WalletDataAccess.Instance.InsertOrUpdate(Wallet);
+        }
     }
 }
