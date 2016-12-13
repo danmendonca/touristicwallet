@@ -22,7 +22,7 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" Padding="0, 3">
               <Label Text="{Binding CurrencyId, Converter={StaticResource idToCodeConverter}}"/>
               <Entry Text="{Binding Amount, Mode=TwoWay}" HorizontalOptions="EndAndExpand" Completed="Completed_EntryHandler"
                      Keyboard="Numeric" />
