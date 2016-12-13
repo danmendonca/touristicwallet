@@ -14,9 +14,9 @@
 
   <Grid>
     <Grid.RowDefinitions>
+      <RowDefinition Height="60"/>
       <RowDefinition Height="50"/>
-      <RowDefinition Height="35"/>
-      <RowDefinition Height="35"/>
+      <RowDefinition Height="50"/>
     </Grid.RowDefinitions>
 
     <Grid.ColumnDefinitions>
@@ -47,45 +47,9 @@
       </Button.TextColor>
     </Button>
     <Picker x:Name="picker" TextColor="White"
-            Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" />
+            Grid.Row="2" Grid.Column="1" />
     
 
   </Grid>
-
-
-  <!--<StackLayout>
-
-    <Label FontSize="Medium" Text="Menu" TextColor="White" HorizontalTextAlignment="Center"/>
-    <Button Text="Edit Owned" Command="{Binding GoToManagement}" BorderColor="White" HorizontalOptions="Start">
-      <Button.BorderColor>
-        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-      </Button.BorderColor>
-      <Button.TextColor>
-        <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-      </Button.TextColor>
-    </Button>
-    <StackLayout Orientation="Horizontal">
-      <Picker x:Name="picker" TextColor="White"/>
-      <Button Text="Convert" Command="{Binding GoToConversion}" HorizontalOptions="CenterAndExpand">
-        <Button.BorderColor>
-          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-        </Button.BorderColor>
-        <Button.TextColor>
-          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-        </Button.TextColor>
-      </Button>
-    </StackLayout>
-    <StackLayout Orientation="Horizontal">
-      <Button Text="Convert" Command="{Binding GoToConversion}" HorizontalOptions="Start">
-        <Button.BorderColor>
-          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-        </Button.BorderColor>
-        <Button.TextColor>
-          <OnPlatform x:TypeArguments="Color" WinPhone="White"/>
-        </Button.TextColor>
-      </Button>
-      <Picker x:Name="picker2" TextColor="White" HorizontalOptions="CenterAndExpand"/>
-    </StackLayout>
-  </StackLayout>-->
 
 </ContentPage>
